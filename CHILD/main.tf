@@ -86,13 +86,13 @@ key_name       = "ganesh"
 module "asg" {
     source     = "../ROOT-MODULE/ASG"
 aws_region = "ap-south-1"
-project_name = "books-three-tier"
+project_name = "three-tier"
 
 # Frontend
 frontend_launch_template_id = module.frontend_and_backend_lt.frontend_launch_template_id
 web_subnet_1_id             = module.vpc.private_web_subnets[0]
 web_subnet_2_id             = module.vpc.private_web_subnets[1]
-frontend_target_group_arn   = module.backend_alb.alb_target_group_arn
+frontend_target_group_arn   = module.frontend_alb.alb_target_group_arn
 
 frontend_desired_capacity = 1
 frontend_min_size         = 1
@@ -102,7 +102,7 @@ frontend_max_size         = 2
 backend_launch_template_id = module.frontend_and_backend_lt.backend_launch_template_id
 app_subnet_1_id            = module.vpc.private_app_subnets[0]
 app_subnet_2_id            = module.vpc.private_app_subnets[1]
-backend_target_group_arn   = module.frontend_alb.alb_target_group_arn
+backend_target_group_arn   = module.backend_alb.alb_target_group_arn
 backend_desired_capacity = 1
 backend_min_size         = 1
 backend_max_size         = 2
@@ -126,7 +126,7 @@ instance_class    = "db.t3.micro"
 multi_az          = false
 db_name           = "bookdb"
 db_username       = "admin"
-db_password       = "admin123"
+db_password       = "Ganesh$9579"
 db_subnet_1_id    = module.vpc.private_db_subnets[0]
 db_subnet_2_id    = module.vpc.private_db_subnets[1]
 rds_sg_id         = module.vpc.database_sg_id
